@@ -118,11 +118,11 @@ var Posts = {
     }
 };
 Posts.readyUI = function (currID) {
-    if (currID != 0) $(".news-control .prev").attr("href", "/news/view/?id="+(currID-1));
-    if (currID != Posts.posts.length - 1) $(".news-control .next").attr("href", "/news/view/?id="+(currID+1));
+    if (currID != 0) $(".news-control .prev").attr("href", fixURL("/news/view/?id="+(currID-1)));
+    if (currID != Posts.posts.length - 1) $(".news-control .next").attr("href", fixURL("/news/view/?id="+(currID+1)));
 }
 Posts.loadPostInfo = function (func) {
-    TBI.Net.AJAX(Posts.settings.url, function (xhr) {
+    TBI.Net.AJAX(fixURL(Posts.settings.url), function (xhr) {
         Posts.posts = $.parseJSON(xhr.response).posts;
         func();
     });
@@ -131,7 +131,7 @@ Posts.getLatestId = function (callback) {
     Posts.loadPostInfo(function () { callback(Posts.sort(Posts.posts, true).reverse()[0].id) });
 }
 Posts.loadSidePosts = function () {
-    TBI.Net.AJAX(Posts.settings.url, function (xhr) {
+    TBI.Net.AJAX(fixURL(Posts.settings.url), function (xhr) {
         Posts.posts = Posts.sort($.parseJSON(xhr.response).posts, true).reverse();
         console.log(Posts.posts);
         for (var i=0;i<Math.bound(Posts.posts.length, Posts.settings.maxSideLength, 0);i++)
@@ -139,14 +139,14 @@ Posts.loadSidePosts = function () {
     });
 }
 Posts.loadSinglePost = function (postID) {
-    TBI.Net.AJAX(Posts.settings.url, function (xhr) {
+    TBI.Net.AJAX(fixURL(Posts.settings.url), function (xhr) {
         Posts.posts = Posts.sort($.parseJSON(xhr.response).posts, true);
         Posts.loadPost(Posts.getPostById($.parseJSON(xhr.response).posts, postID), Posts.SINGLE_POST);
         Posts.readyUI(postID);
     });
 }
 Posts.loadPostPage = function (page) {
-    TBI.Net.AJAX(Posts.settings.url, function (xhr) {
+    TBI.Net.AJAX(fixURL(Posts.settings.url), function (xhr) {
         var min = Posts.settings.pageLength * (page-1),
             max = Posts.settings.pageLength * page;
         Posts.posts = Posts.sort($.parseJSON(xhr.response).posts, true);
@@ -154,7 +154,7 @@ Posts.loadPostPage = function (page) {
     });
 }
 Posts.loadAllPosts = function () {
-    TBI.Net.AJAX(Posts.settings.url, function (xhr) {
+    TBI.Net.AJAX(fixURL(Posts.settings.url), function (xhr) {
         $.parseJSON(xhr.response).posts.forEach(function (post) { Posts.loadPost(post, Posts.ALL_POSTS) });
     });
 }
@@ -166,7 +166,7 @@ Posts.loadPost = function (post, type) {
         case Posts.SINGLE_POST: $(Posts.settings.contentInsert).append("<article "+p+"></article>"); break;
         case Posts.ALL_POSTS: $(Posts.settings.contentInsert).append("<article "+p+"></article>"); break;
     }
-    new TBI.Net.AJAX(post.source, function (xhr) {
+    new TBI.Net.AJAX(fixURL(post.source), function (xhr) {
         if (!isNull(post)) {
             post.text = xhr.response;
             switch (type) {
