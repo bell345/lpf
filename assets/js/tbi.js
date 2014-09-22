@@ -23,6 +23,9 @@ function sort(templst) {
 function randomInt(num) {
     return Math.floor(Math.random()*num);
 }
+function fixURL(url) {
+    return (location.href.search("github.io/lpf") != -1 ? "/lpf" : "") + url;
+}
 var testtime = new Date().getTime();
 var path = hash = query = {};
 var TBI = {
@@ -76,7 +79,7 @@ var TBI = {
                 }
             }
             if (location.pathname.length > 1) 
-                path = location.pathname.replace(/^\//, "").replace(/\/$/, "").split("/");
+                path = location.pathname.replace(/^\//, "").replace(/\/$/, "").replace("lpf/", "").split("/");
         },
         sortTable: function (table, colIndex, direction) {
             if (!(table instanceof HTMLTableElement)) return null; 
@@ -174,7 +177,9 @@ var TBI = {
         info: [],
         includes: [],
         getIndex: function () {
-            TBI.Net.AJAX("/assets/data/includes.json", function (xhr) {
+            var getURL = "/assets/data/includes.json";
+            if (location.href.search("github.io/lpf") != -1) getURL = "/lpf" + getURL;
+            TBI.Net.AJAX(getURL, function (xhr) {
                 TBI.Includes.info = $.parseJSON(xhr.response).includes;
                 TBI.Loader.complete("HTMLIncIndex", TBI.Loader.DONE);
             });
@@ -188,6 +193,8 @@ var TBI = {
                     TBI.Loader.complete("HTMLIncludes", TBI.Loader.DONE);
                 } else if (!getDone[curr]) {
                     getDone[curr] = true;
+                    var source = TBI.Includes.info[curr].source;
+                    if (location.href.search("github.io/lpf") != -1) source = "/lpf" + source;
                     TBI.Net.AJAX(TBI.Includes.info[curr].source, function (xhr) {
                         TBI.Includes.includes[curr] = xhr.response;
                         var oldHTML = TBI.Includes.info[curr].replace?"":$(TBI.Includes.info[curr].insert).html();
