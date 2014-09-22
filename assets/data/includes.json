@@ -1,0 +1,14 @@
+{
+    "includes": [
+        {
+            "source": "/assets/html/header.htm",
+            "insert": "#header",
+            "replace": "true"
+        },
+        {
+            "source": "/assets/html/sidebar.htm",
+            "insert": "#sidebar",
+            "replace": "true"
+        }
+    ]
+}

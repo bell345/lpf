@@ -1,0 +1,10 @@
+{
+    "posts": [
+        {
+            "id": 0,
+            "title": "Welcome to the Linux Proliferation Foundation!",
+            "source": "/assets/html/posts/welcome.htm",
+            "lastUpdated": "2014-09-13 14:30:00"
+        }
+    ]
+}

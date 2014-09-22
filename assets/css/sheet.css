@@ -1,0 +1,230 @@
+/**
+ *  LINUX PROLIFERATION FOUNDATION STYLESHEET
+ *  Version 1.0
+ *  (CC) BY-SA Thomas Bell 2014
+ */
+/* ====== */
+/* GLOBAL */
+/* ====== */
+* {
+    margin:0;
+    padding:0;
+    font-family:"Open Sans", "Calibri", sans-serif;
+}
+body {
+    background:url(/assets/res/background.png) no-repeat #e2e2e2;
+}
+::selection {
+    background-color:#0fcec7;
+    color:#eee;
+}
+/* ====== */
+/* LAYOUT */
+/* ====== */
+#header {
+    margin:0 auto;
+    text-align:center;
+}
+#content {
+    position:relative;
+    margin:0 auto;
+    text-align:center;
+    width:80%;
+    top:20px;
+    background:#ebebeb;
+}
+#maincontent {
+    width:70%;
+    padding:12px 18px;
+    text-align:left;
+}
+#sidebar {
+    position:absolute;
+    right:0;
+    top:0;
+    width:20%;
+    padding:12px 18px;
+    background:#393939;
+    color:#eee;
+}
+.masthead {
+    width:75%;
+    margin:0 auto;
+    text-align:center;
+}
+/* ========== */
+/* NAVIGATION */
+/* ========== */
+.nav {
+    display:block;
+    font-size:0;
+    position:relative;
+    background:rgba(70,70,70,0.5);
+}
+.nav li {
+    display:inline-block;
+    list-style-type:none;
+    position:relative;
+    background:#444;
+}
+.nav li:hover {
+    background:#888;
+}
+.nav li:active {
+    background:#333;
+}
+.nav li a {
+    display:inline-block;
+    text-decoration:none;
+    color:#eee;
+    font-size:16px;
+    padding:7px 14px;
+}
+.inner-nav {
+    position:absolute;
+    text-align:center;
+    display:none;
+    z-index:9;
+    color:#eee;
+    left:0;
+    border-top:0px solid transparent;
+}
+.inner-nav li {
+    display:block;
+    width:100%;
+    position:relative;
+    background:#555;
+}
+/* ==== */
+/* TEXT */
+/* ==== */
+h1 {
+    font-family:"Franklin Gothic Book";
+    margin-bottom:16px;
+    text-align:center;
+    font-size:38px;
+}
+p, .para {
+    margin-bottom:12px;
+}
+#content a {
+    text-decoration:none;
+    color:#08d;
+    -webkit-transition:0.2s all;
+    transition:0.2s all;
+}
+#content a:hover {
+    text-decoration:none;
+    color:#2cf;
+}
+code {
+    font-family:"Terminus (TTF)","Consolas",monospace;
+    font-size:inherit;
+}
+pre.terminal {
+    background:#555;
+    color:#eee;
+    padding:8px 12px;
+    text-align:left;
+}
+pre.terminal code::before {
+    content:"[~] $ ";
+}
+pre.terminal code[data-directory]::before {
+    content:"[" attr(data-directory) "] $ ";
+}
+pre.terminal.root code::before {
+    content:"[~] # ";
+}
+pre.terminal.root code[data-directory]::before {
+    content:"[" attr(data-directory) "] # ";
+}
+ul.misc-links li {
+    display:inline-block;
+    color:#777;
+    font-size:13px;
+    list-style-type:none;
+}
+ul.misc-links li::after {
+    content:" \25aa";
+}
+ul.misc-links li:last-child::after {
+    content:"";
+}
+/* ========== */
+/* NEWS POSTS */
+/* ========== */
+li.post {
+    overflow-wrap:break-word;
+    list-style-type:none;
+    display:block;
+}
+li.post h2 {
+    font-size:16px;
+}
+li.post h3 {
+    font-size:11px;
+    color:#aaa;
+    font-weight:normal;
+    font-style:italic;
+}
+li.post div.post-text {
+    font-size:14px;
+}
+.news-control .prev {
+    text-align:left;
+    float:left;
+}
+.news-control .next {
+    text-align:right;
+    float:right;
+}
+.news-control::after, .news-control::before {
+    content:"";
+    display:block;
+    clear:both;
+}
+/* ====== */
+/* IMAGES */
+/* ====== */
+.img-mid {
+    width:80%;
+    margin:0 auto;
+    margin-bottom:12px;
+    text-align:center;
+}
+.img-mid img {
+    max-width:100%;
+}
+.img-mid .img-toggle {
+    width:100%;
+    height:28px;
+    background:#333;
+    color:#eee;
+    cursor:pointer;
+}
+.img-mid .img-toggle::before {
+    content:attr(title);
+    line-height:28px;
+    padding:3px 12px;
+}
+.logo {
+    background-image:url(/assets/res/lpf-light.png);
+    background-image:url(/assets/res/lpf-light.svg), none;
+    background-repeat:no-repeat;
+    background-size:cover;
+    height:100px;
+    width:250px;
+}
+/* ============== */
+/* USER INTERFACE */
+/* ============== */
+.up-down::after {
+    content:" \25be";
+}
+.up-down.on::after {
+    content:" \25b4";
+}
+.control-row {
+    margin-bottom:6px;
+}
