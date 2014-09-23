@@ -177,9 +177,7 @@ var TBI = {
         info: [],
         includes: [],
         getIndex: function () {
-            var getURL = "/assets/data/includes.json";
-            if (location.href.search("github.io/lpf") != -1) getURL = "/lpf" + getURL;
-            TBI.Net.AJAX(getURL, function (xhr) {
+            TBI.Net.AJAX(fixURL("/assets/data/includes.json"), function (xhr) {
                 TBI.Includes.info = $.parseJSON(xhr.response).includes;
                 TBI.Loader.complete("HTMLIncIndex", TBI.Loader.DONE);
             });
@@ -193,9 +191,7 @@ var TBI = {
                     TBI.Loader.complete("HTMLIncludes", TBI.Loader.DONE);
                 } else if (!getDone[curr]) {
                     getDone[curr] = true;
-                    var source = TBI.Includes.info[curr].source;
-                    if (location.href.search("github.io/lpf") != -1) source = "/lpf" + source;
-                    TBI.Net.AJAX(TBI.Includes.info[curr].source, function (xhr) {
+                    TBI.Net.AJAX(fixURL(TBI.Includes.info[curr].source), function (xhr) {
                         TBI.Includes.includes[curr] = xhr.response;
                         var oldHTML = TBI.Includes.info[curr].replace?"":$(TBI.Includes.info[curr].insert).html();
                         $(TBI.Includes.info[curr].insert).html(oldHTML + xhr.response);
