@@ -24,6 +24,7 @@ function randomInt(num) {
     return Math.floor(Math.random()*num);
 }
 function fixURL(url) {
+    if (isNull(url)) return url;
     return (location.href.search("github.io/lpf") != -1 && url.search("//") == -1 ? "/lpf" : "") + url;
 }
 var testtime = new Date().getTime();
