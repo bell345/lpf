@@ -133,7 +133,6 @@ Posts.getLatestId = function (callback) {
 Posts.loadSidePosts = function () {
     TBI.Net.AJAX(fixURL(Posts.settings.url), function (xhr) {
         Posts.posts = Posts.sort($.parseJSON(xhr.response).posts, true).reverse();
-        console.log(Posts.posts);
         for (var i=0;i<Math.bound(Posts.posts.length, Posts.settings.maxSideLength, 0);i++)
             Posts.loadPost(Posts.posts[i], Posts.SIDE_POSTS);
     });
@@ -233,5 +232,5 @@ $(function () {
     });
 });
 $(document).on("pageload", function () {
-    
+    $("body *[href], *[src]").toArray().forEach(function (el) { $(el).attr("href", fixURL($(el).attr("href"))); });
 });
