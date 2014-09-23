@@ -12,7 +12,7 @@
     font-family:"Open Sans", "Calibri", sans-serif;
 }
 body {
-    background:url(/assets/res/background.png) no-repeat #e2e2e2;
+    background:url(../../assets/res/background.png) no-repeat #e2e2e2;
 }
 ::selection {
     background-color:#0fcec7;
@@ -209,8 +209,8 @@ li.post div.post-text {
     padding:3px 12px;
 }
 .logo {
-    background-image:url(/assets/res/lpf-light.png);
-    background-image:url(/assets/res/lpf-light.svg), none;
+    background-image:url(../../assets/res/lpf-light.png);
+    background-image:url(../../assets/res/lpf-light.svg), none;
     background-repeat:no-repeat;
     background-size:cover;
     height:100px;
