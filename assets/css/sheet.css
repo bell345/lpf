@@ -209,8 +209,8 @@ li.post div.post-text {
     padding:3px 12px;
 }
 .logo {
-    background-image:url(../res/lpf-light.png);
-    background-image:url(../res/lpf-light.svg), none;
+    background-image:url(../../assets/res/lpf-light.png);
+    background-image:url(../../assets/res/lpf-light.svg), none;
     background-repeat:no-repeat;
     background-size:cover;
     height:100px;
