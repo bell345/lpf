@@ -12,7 +12,7 @@
     font-family:"Open Sans", "Calibri", sans-serif;
 }
 body {
-    background:url(../res/background.png) no-repeat #e2e2e2;
+    background:url(../../assets/res/background.png) no-repeat #e2e2e2;
 }
 ::selection {
     background-color:#0fcec7;
