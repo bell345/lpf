@@ -16,5 +16,5 @@
 </ul>
 <script>
     var navlinks = $(".nav a");
-    navlinks.toArray().forEach(function (link) { link.href = fixURL(link.href); });
+    navlinks.toArray().forEach(function (link) { $(link).attr("href", fixURL($(link).attr("href"))); });
 </script>
