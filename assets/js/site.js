@@ -232,5 +232,6 @@ $(function () {
     });
 });
 $(document).on("pageload", function () {
-    $("body *[href], *[src]").toArray().forEach(function (el) { $(el).attr("href", fixURL($(el).attr("href"))); });
+    $("body *[href]").toArray().forEach(function (el) { $(el).attr("href", fixURL($(el).attr("href"))); });
+    $("body *[src]").toArray().forEach(function (el) { $(el).attr("src", fixURL($(el).attr("src"))); });
 });
