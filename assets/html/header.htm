@@ -14,3 +14,7 @@
     </li>
     <li><a href="/about">About the Foundation</a></li>
 </ul>
+<script>
+    var navlinks = $(".nav a");
+    navlinks.toArray().forEach(function (link) { link.href = fixURL(link.href); });
+</script>
