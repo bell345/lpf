@@ -345,4 +345,3 @@ String.prototype.replaceAll = String.prototype.replaceAll || function (toReplace
     while (str.search(toReplace) != -1 && safety++ < 255) str = str.replace(toReplace, replacement);
     if (safety >= 255) console.error(".replaceAll() has reached an upper limit of 255 replacements. This might be due to the replacement not negating the regex toReplace.");
     return str;
-}
