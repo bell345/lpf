@@ -13,6 +13,7 @@
 }
 body {
     background:url(../../assets/res/background.png) no-repeat #e2e2e2;
+    font-size:16px;
 }
 ::selection {
     background-color:#0fcec7;
@@ -99,10 +100,16 @@ body {
 /* TEXT */
 /* ==== */
 h1 {
-    font-family:"Franklin Gothic Book";
+    font-family:"Franklin Gothic Book", "Segoe UI Semibold", serif;
     margin-bottom:16px;
     text-align:center;
     font-size:38px;
+}
+h2 {
+    font-family:"Franklin Gothic Book", "Segoe UI Semibold", serif;
+    margin-bottom:14px;
+    text-align:center;
+    font-size:26px;
 }
 p, .para {
     margin-bottom:12px;
@@ -150,6 +157,13 @@ ul.misc-links li::after {
 }
 ul.misc-links li:last-child::after {
     content:"";
+}
+ul.main {
+    margin-bottom:16px;
+    list-style-type:none;
+}
+ul.main li {
+    margin-left:24px;
 }
 /* ========== */
 /* NEWS POSTS */
