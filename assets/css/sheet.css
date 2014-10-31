@@ -53,6 +53,20 @@ body {
     margin:0 auto;
     text-align:center;
 }
+#gallery {
+    -webkit-columns:2;
+}
+.gallery-icon {
+    width:70px;
+    height:70px;
+}
+#gallery li {
+    display:inline-block;
+}
+.gallery-info {
+    display:inline-block;
+    padding:8px 12px;
+}
 /* ========== */
 /* NAVIGATION */
 /* ========== */
@@ -162,8 +176,11 @@ ul.main {
     margin-bottom:16px;
     list-style-type:none;
 }
-ul.main li {
+ul.main li, ol.main li {
     margin-left:24px;
+}
+ul ol, ol ol {
+    list-style-type:lower-alpha;
 }
 /* ========== */
 /* NEWS POSTS */

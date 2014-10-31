@@ -16,7 +16,7 @@ var CD3 = {
     terms: ["year","month","day","hour","minute","second"]
 };
 CD3.nth = function (num) {
-    if (num%100>10&&num%100<20) return num + "th";
+    if (num%100>10&&num%100<14) return num + "th";
     else if (num%10==1) return num + "st";
     else if (num%10==2) return num + "nd";
     else if (num%10==3) return num + "rd";
@@ -70,13 +70,13 @@ var Posts = {
     loadedSidePosts: [],
     posts: [],
     truncate: function (text, length) {
-        return text.replace(new RegExp("([^]{1,"+length+"})[^]{1,}"), "$1...");
+        return text.replace(new RegExp("([^]{1,"+length+"})[^]+"), "$1...");
     },
     format: function (obj) {
         var html = "<h2><a href='/news/view/?id="+obj.id+"'>"+obj.title+"</a></h2>";
         html += "<h3 class='post-time'>"+CD3.format(Posts.parseDate(obj.lastUpdated), "Updated: {yyyy}-{MM}-{DD} {HH}:{mm}")+"</h3>";
         html += "<div class='post-text'>"+Posts.truncate(obj.text, Posts.settings.maxLength)+"</div>";
-        html = html.replaceAll(/<script [^>]{1,}>[^]{1,}?<\/script>/,"");
+        html = html.replaceAll(/<script [^>]+>[^]*<\/script>/,"");
         return html;
     },
     parseDate: function (datestr) {
@@ -87,7 +87,7 @@ var Posts = {
     sort: function (arr, sortById) {
         var min = Infinity,
             max = -Infinity, minItem, maxItem;
-        arr.forEach(function (item) { 
+        arr.forEach(function (item) {
             var itemTime = sortById ? item.id : Posts.parseDate(item.lastUpdated).getTime();
             if (itemTime < min) { min = itemTime; minItem = item; }
             if (itemTime > max) { max = itemTime; maxItem = item; }
@@ -169,7 +169,7 @@ Posts.loadPost = function (post, type) {
         if (!isNull(post)) {
             post.text = xhr.response;
             switch (type) {
-                case Posts.SIDE_POSTS: 
+                case Posts.SIDE_POSTS:
                     var insert = Posts.settings.sideInsert + " .post-id-" + post.id;
                     $(insert).html(Posts.format(post, type));
                     Posts.loadedSidePosts.push(true);
@@ -231,7 +231,7 @@ $(function () {
         conditions: []
     });
 });
-$(document).on("pageload", function () {
-    $("body *[href]").toArray().forEach(function (el) { $(el).attr("href", fixURL($(el).attr("href"))); });
-    $("body *[src]").toArray().forEach(function (el) { $(el).attr("src", fixURL($(el).attr("src"))); });
-});
+(function(){
+    $("body *[href]:not(.external)").toArray().forEach(function (el) { $(el).attr("href", fixURL($(el).attr("href"))); });
+    $("body *[src]:not(.external)").toArray().forEach(function (el) { $(el).attr("src", fixURL($(el).attr("src"))); });
+})();

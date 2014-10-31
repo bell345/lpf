@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Linux Proliferation Foundation | Get Linux</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../assets/css/sheet.css" />
+    <link rel="shortcut icon" href="../favicon.png" />
+    <script src="../assets/js/jquery.min.js"></script>
+    <script src="../assets/js/tbi.js"></script>
+    <script src="../assets/js/site.js"></script>
+</head>
+<body>
+    <div id="wrapper">
+        <div id="header"></div>
+        <div id="content">
+            <div id="maincontent">
+                <h1>Get Linux</h1>
+                <p>
+                    Installing a new operating system can be a bit daunting for first-timers, but once
+                    you get the hang of it, it's actually quite simple.
+                </p>
+                <p>
+                    You can choose a couple of different methods to install Linux. If you want to
+                    simply try out Linux you can install it into a <a href="#vm">virtual machine</a>,
+                    which is pretty much a computer within a computer. If you want to exclusively
+                    use Linux, you can <a href="#overwrite">overwrite your existing Windows
+                    files</a>, and if you want to <a href="#dual-boot">boot both Windows and Linux</a>,
+                    you can dual-boot.
+                </p>
+                <p>
+                    Whichever method you choose, you have a couple of preliminary steps that you need to
+                    complete below.
+                </p>
+                <ol class="main">
+                    <li>Pick which <a href="/get/distros">distribution</a> of Linux you wish to use.</li>
+                    <li>
+                        Download a disk image file, known as an ISO file. They will usually be from 500MB
+                        to 2GB in size.
+                        <ol>
+                            <li>To check which version you should download, press <kbd>Win</kbd>+<kbd>R</kbd>
+                                and type in "msinfo32", then press Enter. In the field "System Type", it should
+                                say something along the lines of either "x64-based PC" or "x86-based PC".</li>
+                            <li>
+                                Download the "x64" or "64-bit" file if it says the former, or download the
+                                "x86" or "32-bit" file if it says the latter.
+                            </li>
+                        </ol>
+                    </li>
+                </ol>
+                <h2 id="vm">Virtual Machine</h2>
+                <p>
+                    A virtual machine is not only good for installing Linux. It is also handy to try other
+                    operating systems without using an actual PC and to experiment with setups that may risk
+                    your computer's integrity.
+                </p>
+                <ol class="main">
+                    <li>
+                        Install the virtual machine software of your choice. I recommend using
+                        <a href="http://virtualbox.org" class="external">Oracle VM VirtualBox</a>.
+                        It's free, and has a lot of powerful features. The following instructions will use
+                        VirtualBox, but these can be extended to other software.
+                    </li>
+                    <li>
+                        Make a new virtual machine by clicking on the "New" button. In the box that
+                        appears, choose "Linux" as the operating system type and your distribution
+                        and architecture (either 32-bit, x86 or 64-bit, x64). Give it any name
+                        you wish.
+                        <ol>
+                            <li>
+                                Some Linux distributions are not listed. In this scenario, either
+                                pick the distribution that yours draws from (Kubuntu draws from
+                                Ubuntu, for example) or the "Other Linux" option.
+                            </li>
+                        </ol>
+                    </li>
+                    <li>
+                        Choose how much memory you wish to give to the virtual machine. The default
+                        of 512MB is fine to test Linux out, but you may wish to give it 1024MB for a
+                        faster experience.
+                    </li>
+                    <li>
+                        Create a hard drive file. Choose the "Create a hard drive now" option and click
+                        "Create".
+                        <ol>
+                            <li>
+                                There is a few options that you may wish to configure. On the first screen,
+                                you can choose what file type the hard drive will be. This will make no
+                                difference in this case, so just click "Next".
+                            </li>
+                            <li>
+                                You can now choose between "Dynamic" and "Fixed" allocation. "Dynamic" will
+                                grow the file as needed (up to a certain point), but will not shrink when
+                                files are deleted. "Fixed" will create a file of a specified size on your
+                                operating system that will not change in size. Choose your preference, then
+                                click "Next".
+                            </li>
+                            <li>
+                                Now choose how large the file will be. The default is 8GB, and is completely
+                                fine to try out Linux. You may wish to allocate more to install more programs,
+                                but keep in mind that this will take up hard drive space on your host computer.
+                                Click "Create" to finalise the process.
+                            </li>
+                        </ol>
+                    </li>
+                    <li>
+                        The new virtual machine should now be selected. Click on "Settings" to configure the
+                        machine. For now, click on the Storage tab to set up the ISO you downloaded.
+                        <ol>
+                            <li>
+                                Under "Controller: IDE", there should be an empty slot with a disc icon. Click on this
+                                and then on the disc icon with a small arrow next to the "CD/DVD Drive: " drop-down
+                                box.
+                            </li>
+                            <li>
+                                Once more, click on the "Choose a virtual CD/DVD disk file" menu item and browse to
+                                your ISO. It should be in your "Downloads" folder.
+                            </li>
+                            <li>
+                                Click "Open" on the file dialog and "OK" on the settings dialog to save your settings.
+                            </li>
+                        </ol>
+                    </li>
+                    <li>
+                        Now, start the virtual machine (by clicking on "Start") and follow the instructions to install
+                        Linux. The virtual machine may run slower than if you installed it on a proper PC, simply because
+                        you are running it on top of another operating system.
+                    </li>
+                </ol>
+                <div id="sidebar"></div>
+            </div>
+            <div id="footer"></div>
+        </div>
+    </div>
+</body>
+</html>

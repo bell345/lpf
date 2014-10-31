@@ -25,7 +25,7 @@ function randomInt(num) {
 }
 function fixURL(url) {
     if (isNull(url)) return url;
-    return (location.href.search("github.io/lpf") != -1 && url.search("//") == -1 ? "/lpf" : "") + url;
+    return (location.href.search("github.io/lpf") != -1 && url.search(/(\/\/|#)/) != 0 ? "/lpf" : "") + url;
 }
 var testtime = new Date().getTime();
 var path = hash = query = {};
@@ -79,21 +79,21 @@ var TBI = {
                     query[hash[i][0]] = hash[i][1];
                 }
             }
-            if (location.pathname.length > 1) 
+            if (location.pathname.length > 1)
                 path = location.pathname.replace(/^\//, "").replace(/\/$/, "").replace("lpf/", "").split("/");
         },
         sortTable: function (table, colIndex, direction) {
-            if (!(table instanceof HTMLTableElement)) return null; 
-            var records = table.querySelectorAll("tbody tr"), 
-                refs = {}, 
-                fields = [], 
-                numbers = true; 
-            if (colIndex != -1) for (var i=0;i<records.length;i++) { 
+            if (!(table instanceof HTMLTableElement)) return null;
+            var records = table.querySelectorAll("tbody tr"),
+                refs = {},
+                fields = [],
+                numbers = true;
+            if (colIndex != -1) for (var i=0;i<records.length;i++) {
                 var list = records[i].querySelectorAll("td");
                 var item = list[colIndex].innerText;
                 if (numbers && isNaN(parseFloat(item))) numbers = false;
             }
-            for (var i=0;i<records.length;i++) { 
+            for (var i=0;i<records.length;i++) {
                 var list = records[i].querySelectorAll("td");
                 if (colIndex != -1) {
                     var item = list[colIndex].innerText.toLowerCase();
@@ -102,18 +102,18 @@ var TBI = {
                 fields.push(item);
                 refs[item] = i;
             }
-            if (numbers) fields = sort(fields); 
+            if (numbers) fields = sort(fields);
             else fields.sort();
-            if (direction) fields.reverse(); 
-            $(table.getElementsByTagName("tbody")[0]).empty(); 
-            for (var i=0;i<fields.length;i++) table.getElementsByTagName("tbody")[0].appendChild(records[refs[fields[i]]]); 
+            if (direction) fields.reverse();
+            $(table.getElementsByTagName("tbody")[0]).empty();
+            for (var i=0;i<fields.length;i++) table.getElementsByTagName("tbody")[0].appendChild(records[refs[fields[i]]]);
         },
         updateUI: function () {
             var images = $(".img-mid:not(.done)");
             for (var i=0;i<images.length;i++) {
                 var currimg = images[i];
                 var chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890", rand = "";
-                if (isNull(currimg.id)) { 
+                if (isNull(currimg.id)) {
                     do {
                         rand = "";
                         for (var j=0;j<4;j++) rand += chars[randomInt(chars.length)];
@@ -148,15 +148,15 @@ var TBI = {
             for (var i=0;i<$("table.sortable").length;i++) {
                 var currtble = $("table.sortable")[i];
                 var rows = currtble.querySelectorAll("tbody tr");
-                for (var j=0;j<rows.length;j++) 
+                for (var j=0;j<rows.length;j++)
                     if (rows[j].className.search(" torder") == -1) rows[j].className += " torder-"+j;
                 $(currtble.querySelectorAll("th.sort")).attr("class", "sort none");
                 $(currtble.querySelectorAll("th.sort")).off("click");
                 $(currtble.querySelectorAll("th.sort")).click(function () {
                     if ($(this).parent()[0].getElementsByTagName("th").length > 0) {
                         var updownList = $(this).parent()[0].getElementsByTagName("th");
-                        for (var j=0;j<updownList.length;j++) 
-                            if (updownList[j] != this) 
+                        for (var j=0;j<updownList.length;j++)
+                            if (updownList[j] != this)
                                 updownList[j].className = updownList[j].className.replace(/( up| down)/, " none");
                             else var tIndex = j;
                     }
@@ -164,11 +164,11 @@ var TBI = {
                     if (currclass.search(" none") != -1) this.className = currclass.replace(" none", " up");
                     else if (currclass.search(" up") != -1) this.className = currclass.replace(" up", " down");
                     else if (currclass.search(" down") != -1) this.className = currclass.replace(" down", " none");
-                    if (this.className.search(" down") != -1) 
+                    if (this.className.search(" down") != -1)
                         TBI.Util.sortTable($(this).parent().parent().parent()[0], tIndex, true);
-                    else if (this.className.search(" up") != -1) 
+                    else if (this.className.search(" up") != -1)
                         TBI.Util.sortTable($(this).parent().parent().parent()[0], tIndex, false);
-                    else if (this.className.search(" none") != -1) 
+                    else if (this.className.search(" none") != -1)
                         TBI.Util.sortTable($(this).parent().parent().parent()[0], -1, false);
                 });
             }
@@ -196,7 +196,7 @@ var TBI = {
                         TBI.Includes.includes[curr] = xhr.response;
                         var oldHTML = TBI.Includes.info[curr].replace?"":$(TBI.Includes.info[curr].insert).html();
                         $(TBI.Includes.info[curr].insert).html(oldHTML + xhr.response);
-                        curr++; 
+                        curr++;
                     });
                 }
             }, 1);
@@ -229,8 +229,8 @@ var TBI = {
             }
         },
         search: function (s) {
-            for (var i=0;i<TBI.Nav.data.length;i++) 
-                if (!isNull(TBI.Nav.data[i]) && TBI.Nav.data[i][0] == s) 
+            for (var i=0;i<TBI.Nav.data.length;i++)
+                if (!isNull(TBI.Nav.data[i]) && TBI.Nav.data[i][0] == s)
                     return TBI.Nav.data[i][1];
             return null;
         }
@@ -259,7 +259,7 @@ var TBI = {
             TBI.Loader.event("Loader initializing");
             var loaderTimer = setInterval(function () {
                 for (var i=0;i<TBI.Loader.jobs.length;i++) TBI.Loader.checkJob(TBI.Loader.jobs[i]);
-                if (TBI.Loader.completed.length >= TBI.Loader.jobs.length || 
+                if (TBI.Loader.completed.length >= TBI.Loader.jobs.length ||
                     TBI.Loader.timer > TBI.Loader.settings.timeout) {
                     clearInterval(loaderTimer);
                     TBI.Loader.done = true;
@@ -273,8 +273,8 @@ var TBI = {
             var depSatisfied = true,
                 condSatisfied = true;
             if (TBI.Loader.progress.indexOf(job.id) == -1 && TBI.Loader.completed.indexOf(job.id) == -1) {
-                job.dependencies.forEach(function (dep) { 
-                    if (TBI.Loader.completed.indexOf(dep) == -1) depSatisfied = false; 
+                job.dependencies.forEach(function (dep) {
+                    if (TBI.Loader.completed.indexOf(dep) == -1) depSatisfied = false;
                 });
                 job.conditions.forEach(function (cond) { if (!cond()) condSatisfied = false; });
                 if (depSatisfied && condSatisfied) {
@@ -301,7 +301,7 @@ var TBI = {
         },
         event: function (message, important) {
             TBI.Loader.log.push({time:new Date().getTime() - testtime,message:message});
-            if (TBI.Loader.debug || important) 
+            if (TBI.Loader.debug || important)
                 console.log("["+(new Date().getTime() - testtime)+"ms] "+message);
         }
     }
