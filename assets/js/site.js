@@ -231,7 +231,7 @@ $(function () {
         conditions: []
     });
 });
-(function(){
+$(function(){
     $("body *[href]:not(.external)").toArray().forEach(function (el) { $(el).attr("href", fixURL($(el).attr("href"))); });
     $("body *[src]:not(.external)").toArray().forEach(function (el) { $(el).attr("src", fixURL($(el).attr("src"))); });
-})();
+});
