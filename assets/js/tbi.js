@@ -25,7 +25,14 @@ function randomInt(num) {
 }
 function fixURL(url) {
     if (isNull(url)) return url;
-    return (location.href.search("github.io/lpf") != -1 && url.search(/(\/\/|#)/) != 0 ? "/lpf" : "") + url;
+    if (location.protocol == "file:") {
+        var levels = 0, str = location.pathname;
+        while (str.search("/") != -1) { i++; str = str.replace("/", "") }
+        for (var i=0,s="";i<levels;i++) s += "../";
+        if (s.length == 0) s = "./";
+        s = s.substring(0, s.length-1);
+        return (url.search(/(\/\/|#)/) != 0 ? s : "") + url;
+    } else return (location.href.search("github.io/lpf") != -1 && url.search(/(\/\/|#)/) != 0 ? "/lpf" : "") + url;
 }
 var testtime = new Date().getTime();
 var path = hash = query = {};
