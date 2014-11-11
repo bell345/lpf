@@ -234,4 +234,14 @@ $(function () {
 $(document).on("pageload", function () {
     $("body *[href]:not(.external)").toArray().forEach(function (el) { $(el).attr("href", fixURL($(el).attr("href"))); });
     $("body *[src]:not(.external)").toArray().forEach(function (el) { $(el).attr("src", fixURL($(el).attr("src"))); });
+    $(document).scroll(function () {
+        if (window.pageYOffset > parseInt($(".masthead").css("height")) + $(".masthead").offset().top) {
+            $(".nav").css("position", "fixed");
+            $(".masthead").css("margin-bottom", $(".nav").css("height"));
+        } else {
+            $(".nav").css("position", "relative");
+            $(".masthead").css("margin-bottom", 0);
+        }
+    });
+    $(document).trigger("scroll");
 });
